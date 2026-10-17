@@ -1,0 +1,197 @@
+[
+  {
+    "id": "LAT-001",
+    "estado": "Hidalgo",
+    "municipio": "Pachuca de Soto",
+    "zona": "Sector Oriente",
+    "evento": "Inundación",
+    "urgencia": 3,
+    "afectados": 45,
+    "recursos": [
+      "Bomberos",
+      "Personal médico",
+      "Vehículo de rescate"
+    ],
+    "estadoAtencion": "Pendiente",
+    "fecha": "2026-10-16T08:15:00-06:00",
+    "observaciones": "Escenario simulado: anegamiento en una zona urbana y necesidad de apoyo de primera respuesta."
+  },
+  {
+    "id": "LAT-002",
+    "estado": "Veracruz",
+    "municipio": "Xalapa",
+    "zona": "Acceso Norte",
+    "evento": "Derrumbe",
+    "urgencia": 2,
+    "afectados": 18,
+    "recursos": [
+      "Brigada de evaluación",
+      "Equipo para remoción ligera"
+    ],
+    "estadoAtencion": "En proceso",
+    "fecha": "2026-10-16T08:42:00-06:00",
+    "observaciones": "Escenario simulado: obstrucción parcial de un acceso; requiere verificación de ruta alterna."
+  },
+  {
+    "id": "LAT-003",
+    "estado": "Puebla",
+    "municipio": "Puebla",
+    "zona": "Zona Centro",
+    "evento": "Incendio",
+    "urgencia": 1,
+    "afectados": 6,
+    "recursos": [
+      "Unidad de bomberos"
+    ],
+    "estadoAtencion": "Atendido",
+    "fecha": "2026-10-16T07:20:00-06:00",
+    "observaciones": "Escenario simulado: reporte de baja magnitud marcado como atendido para mostrar el ciclo completo."
+  },
+  {
+    "id": "LAT-004",
+    "estado": "Oaxaca",
+    "municipio": "Oaxaca de Juárez",
+    "zona": "Sector Montañoso",
+    "evento": "Derrumbe",
+    "urgencia": 3,
+    "afectados": 62,
+    "recursos": [
+      "Búsqueda y rescate",
+      "Personal médico",
+      "Maquinaria pesada"
+    ],
+    "estadoAtencion": "Pendiente",
+    "fecha": "2026-10-16T09:03:00-06:00",
+    "observaciones": "Escenario simulado: acceso principal intransitable y múltiples personas que requieren valoración."
+  },
+  {
+    "id": "LAT-005",
+    "estado": "Chiapas",
+    "municipio": "Tuxtla Gutiérrez",
+    "zona": "Periferia Sur",
+    "evento": "Inundación",
+    "urgencia": 3,
+    "afectados": 38,
+    "recursos": [
+      "Rescate acuático",
+      "Agua potable",
+      "Atención prehospitalaria"
+    ],
+    "estadoAtencion": "En proceso",
+    "fecha": "2026-10-16T09:18:00-06:00",
+    "observaciones": "Escenario simulado: sectores con movilidad limitada y necesidad de apoyo sanitario."
+  },
+  {
+    "id": "LAT-006",
+    "estado": "Jalisco",
+    "municipio": "Guadalajara",
+    "zona": "Corredor Oriente",
+    "evento": "Incendio",
+    "urgencia": 2,
+    "afectados": 21,
+    "recursos": [
+      "Bomberos",
+      "Unidad de protección civil"
+    ],
+    "estadoAtencion": "Pendiente",
+    "fecha": "2026-10-16T09:31:00-06:00",
+    "observaciones": "Escenario simulado: solicitud de apoyo y evaluación de afectaciones en inmuebles cercanos."
+  },
+  {
+    "id": "LAT-007",
+    "estado": "Sonora",
+    "municipio": "Hermosillo",
+    "zona": "Sector Poniente",
+    "evento": "Falla de suministro",
+    "urgencia": 1,
+    "afectados": 14,
+    "recursos": [
+      "Agua potable",
+      "Planta eléctrica portátil"
+    ],
+    "estadoAtencion": "Atendido",
+    "fecha": "2026-10-16T06:55:00-06:00",
+    "observaciones": "Escenario simulado: necesidad básica reportada y posteriormente marcada como atendida."
+  },
+  {
+    "id": "LAT-008",
+    "estado": "Chihuahua",
+    "municipio": "Chihuahua",
+    "zona": "Carretera Regional",
+    "evento": "Derrumbe",
+    "urgencia": 2,
+    "afectados": 11,
+    "recursos": [
+      "Brigada vial",
+      "Equipo de evaluación estructural"
+    ],
+    "estadoAtencion": "Pendiente",
+    "fecha": "2026-10-16T09:47:00-06:00",
+    "observaciones": "Escenario simulado: circulación restringida; se solicita validar la conectividad de la zona."
+  },
+  {
+    "id": "LAT-009",
+    "estado": "Estado de México",
+    "municipio": "Toluca",
+    "zona": "Zona Industrial",
+    "evento": "Incendio",
+    "urgencia": 1,
+    "afectados": 9,
+    "recursos": [
+      "Unidad de bomberos",
+      "Personal de evaluación"
+    ],
+    "estadoAtencion": "En proceso",
+    "fecha": "2026-10-16T10:02:00-06:00",
+    "observaciones": "Escenario simulado: control y evaluación preventiva de un incidente localizado."
+  },
+  {
+    "id": "LAT-010",
+    "estado": "Quintana Roo",
+    "municipio": "Chetumal",
+    "zona": "Sector Costero",
+    "evento": "Inundación",
+    "urgencia": 2,
+    "afectados": 27,
+    "recursos": [
+      "Protección civil",
+      "Agua potable",
+      "Transporte de apoyo"
+    ],
+    "estadoAtencion": "Atendido",
+    "fecha": "2026-10-16T06:32:00-06:00",
+    "observaciones": "Escenario simulado: reporte concluido; se conserva en la tabla para consulta histórica de la DEMO."
+  },
+  {
+    "id": "LAT-011",
+    "estado": "Guerrero",
+    "municipio": "Chilpancingo",
+    "zona": "Sector Norte",
+    "evento": "Interrupción de servicios",
+    "urgencia": 1,
+    "afectados": 32,
+    "recursos": [
+      "Agua potable",
+      "Brigada de servicios básicos"
+    ],
+    "estadoAtencion": "Pendiente",
+    "fecha": "2026-10-16T10:15:00-06:00",
+    "observaciones": "Escenario simulado: continuidad de servicios básicos en evaluación."
+  },
+  {
+    "id": "LAT-012",
+    "estado": "Nuevo León",
+    "municipio": "Monterrey",
+    "zona": "Corredor Poniente",
+    "evento": "Derrumbe",
+    "urgencia": 1,
+    "afectados": 4,
+    "recursos": [
+      "Inspección vial",
+      "Señalización preventiva"
+    ],
+    "estadoAtencion": "En proceso",
+    "fecha": "2026-10-16T10:24:00-06:00",
+    "observaciones": "Escenario simulado: revisión de un tramo de circulación después de reportar material en la vía."
+  }
+]
