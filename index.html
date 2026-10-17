@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07162f">
+  <meta name="description" content="LATIDO: DEMO académica de monitoreo y priorización de alertas simuladas en México.">
+  <title>LATIDO | Sistema de Apoyo</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2307162f'/%3E%3Cpath d='M12 52h19l10-23 16 45 11-28 7 6h13' fill='none' stroke='%23ff665e' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <link rel="preconnect" href="https://{s}.basemaps.cartocdn.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="demo-banner"><span class="demo-dot"></span><strong>ENTORNO DE DEMOSTRACIÓN</strong><span>Todos los incidentes y cifras son simulados. No usar para emergencias reales.</span></div>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="LATIDO, ir al inicio">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M5 25h10l5.2-12 8.1 23 5.7-15 3.8 4H43" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="brand-copy"><span class="brand-name">LATIDO</span><span class="brand-subtitle">SISTEMA DE APOYO</span></span>
+    </a>
+    <div class="topbar-right"><span class="status-pill"><span class="status-dot"></span> Datos de prueba cargados</span><span class="version-label">DEMO · V 1.0</span></div>
+  </header>
+
+  <main id="inicio" class="page-wrap">
+    <section class="intro-row" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">CENTRAL DE MONITOREO · MÉXICO</p>
+        <h1 id="page-title">Panel de alertas <span>y respuesta</span></h1>
+        <p class="intro-copy">Consulta los incidentes de prueba, identifica las prioridades y explora el mapa por entidad federativa.</p>
+      </div>
+      <button id="exportBtn" class="button button-secondary" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg> Exportar CSV</button>
+    </section>
+
+    <section class="metrics-grid" aria-label="Resumen de alertas">
+      <article class="metric-card metric-blue"><div class="metric-top"><span class="metric-label">Alertas recibidas</span><span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18v-2a8 8 0 0 1 16 0v2M2 18h4v3H2zm16 0h4v3h-4zM12 3v2"/></svg></span></div><div class="metric-value" id="metricTotal">—</div><div class="metric-foot">Registros de la DEMO</div></article>
+      <article class="metric-card metric-amber"><div class="metric-top"><span class="metric-label">Pendientes</span><span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></div><div class="metric-value" id="metricPending">—</div><div class="metric-foot">Requieren seguimiento</div></article>
+      <article class="metric-card metric-red"><div class="metric-top"><span class="metric-label">Prioridad crítica</span><span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span></div><div class="metric-value" id="metricCritical">—</div><div class="metric-foot">Nivel 3 · No atendidas</div></article>
+      <article class="metric-card metric-teal"><div class="metric-top"><span class="metric-label">Estados con alertas</span><span class="metric-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span></div><div class="metric-value" id="metricStates">—</div><div class="metric-foot">Con registro en la tabla</div></article>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel alerts-panel" aria-labelledby="alerts-title">
+        <div class="panel-heading">
+          <div><p class="section-kicker">REGISTRO CONSOLIDADO</p><h2 id="alerts-title">Tabla de alertas</h2></div>
+          <span class="table-count" id="tableCount">12 registros</span>
+        </div>
+        <div class="filters" aria-label="Filtros de alertas">
+          <label class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="searchInput" type="search" placeholder="Buscar estado, evento o ID…" autocomplete="off" aria-label="Buscar alertas"></label>
+          <label class="select-wrap"><span class="sr-only">Filtrar por urgencia</span><select id="urgencyFilter"><option value="all">Todas las urgencias</option><option value="3">Nivel 3 · Crítica</option><option value="2">Nivel 2 · Media</option><option value="1">Nivel 1 · Baja</option></select></label>
+          <label class="select-wrap"><span class="sr-only">Filtrar por estado de atención</span><select id="statusFilter"><option value="all">Todos los estados</option><option value="Pendiente">Pendiente</option><option value="En proceso">En proceso</option><option value="Atendido">Atendido</option></select></label>
+          <button id="clearFilters" class="clear-button" type="button">Limpiar</button>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">ID</th><th scope="col">Localidad</th><th scope="col">Evento</th><th scope="col">Urgencia</th><th scope="col">Recursos</th><th scope="col">Atención</th></tr></thead>
+            <tbody id="alertsTableBody"><tr><td colspan="6" class="loading-cell">Cargando datos simulados…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="table-footer"><span id="tableSummary">Mostrando registros de demostración</span><span class="read-only"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Solo consulta</span></div>
+      </section>
+
+      <aside class="panel details-panel" aria-labelledby="detail-title">
+        <div class="panel-heading detail-heading"><div><p class="section-kicker">FICHA OPERATIVA</p><h2 id="detail-title">Detalles de la alerta</h2></div><span class="detail-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg></span></div>
+        <div id="detailContent" class="detail-content"><div class="empty-detail"><span class="empty-detail-icon">◎</span><h3>Selecciona una alerta</h3><p>Elige un renglón de la tabla o una entidad del mapa para consultar sus detalles.</p></div></div>
+        <div class="detail-note"><span class="note-icon">i</span><p>La prioridad del estado en el mapa representa el nivel más alto entre sus alertas activas de esta DEMO.</p></div>
+      </aside>
+    </section>
+
+    <section class="panel map-panel" aria-labelledby="map-title">
+      <div class="panel-heading map-heading">
+        <div><p class="section-kicker">VISTA TERRITORIAL</p><h2 id="map-title">Mapa de emergencias</h2><p class="panel-subtitle">Selecciona un estado para consultar sus reportes. Los colores indican la mayor urgencia activa.</p></div>
+        <button class="button button-quiet" type="button" id="resetMap">Ver México completo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+      </div>
+      <div class="map-layout">
+        <div class="map-wrap"><div id="mexicoMap" role="application" aria-label="Mapa interactivo de las entidades federativas de México"></div><div id="mapLoading" class="map-status"><span class="spinner"></span><span>Cargando mapa de México…</span></div><div id="mapError" class="map-error" hidden><strong>No se pudo cargar el mapa.</strong><span>Comprueba tu conexión a internet y recarga la página. La tabla de ejemplo seguirá disponible si los datos ya se cargaron.</span></div></div>
+        <div class="map-side">
+          <div class="legend-card"><h3>Leyenda de urgencia</h3><div class="legend-item"><span class="legend-swatch level-3"></span><div><strong>Nivel 3 · Crítica</strong><span>Riesgo inmediato / respuesta prioritaria</span></div></div><div class="legend-item"><span class="legend-swatch level-2"></span><div><strong>Nivel 2 · Media</strong><span>Capacidad local comprometida</span></div></div><div class="legend-item"><span class="legend-swatch level-1"></span><div><strong>Nivel 1 · Baja</strong><span>Afectación con capacidad parcial</span></div></div><div class="legend-item"><span class="legend-swatch no-alert"></span><div><strong>Sin alerta activa</strong><span>Sin reportes activos en los datos</span></div></div></div>
+          <div class="selected-state-card" id="mapSelectionSummary"><span class="selected-state-label">SELECCIÓN DEL MAPA</span><strong id="selectedStateName">Ningún estado seleccionado</strong><span id="selectedStateMeta">Haz clic en una entidad federativa</span></div>
+          <div class="map-tip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.5 7-13A7 7 0 0 0 5 9c0 6.5 7 13 7 13Z"/><circle cx="12" cy="9" r="2.2"/></svg><p><strong>Explora el mapa</strong><span>Pasa el cursor para ver el nombre de cada estado y selecciona una entidad para abrir su ficha.</span></p></div>
+        </div>
+      </div>
+      <div class="map-footer"><span><span class="footer-dot"></span> Visualización de datos simulados</span><span>Fuente cartográfica: GeoJSON externo de límites estatales · Consulta de demostración</span></div>
+    </section>
+    <footer class="site-footer"><span>LATIDO · Sistema de Apoyo</span><span>Prototipo académico de interfaz para gestión de emergencias</span><span class="footer-warning">No es un sistema oficial ni operativo.</span></footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
