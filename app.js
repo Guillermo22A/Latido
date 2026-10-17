@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const DATA_URL = './data/alertas.json';
+  const DATA_URL = './alertas.json';
   const GEOJSON_URL = 'https://raw.githubusercontent.com/angelnmara/geojson/master/mexicoHigh.json';
   const COLORS = { 3: '#d83d47', 2: '#ef8d37', 1: '#e3c34d', 0: '#c7d0de' };
   const $ = (id) => document.getElementById(id);
