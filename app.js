@@ -204,8 +204,11 @@
   function buildMap(geojson) {
     if (!window.L) throw new Error('La biblioteca Leaflet no está disponible.');
     map = L.map('mexicoMap', { scrollWheelZoom: false, zoomControl: true, minZoom: 3, maxZoom: 8, attributionControl: true });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd', maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
+    // OpenStreetMap's public raster tile endpoint does not require a CARTO API key.
+    // Keep attribution visible and do not prefetch tiles; follow the OSM tile usage policy.
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
     }).addTo(map);
     geoFeatures = geojson.features || [];
     geojsonLayer = L.geoJSON(geojson, {
